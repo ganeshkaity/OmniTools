@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { db } from "../../lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Link from "next/link";
-import { Loader2, ArrowRight, Zap, Calculator } from "lucide-react";
+import { Loader2, ArrowRight, Zap, Calculator, Search } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface ToolDef {
@@ -20,6 +20,8 @@ const quickTools = [
   { title: "PNG to JPG", from: "PNG", to: "JPG", href: "/dashboard/tools/converter?from=png&to=jpg", color: "#f59e0b" },
   { title: "WEBP to PNG", from: "WEBP", to: "PNG", href: "/dashboard/tools/converter?from=webp&to=png", color: "#8b5cf6" },
   { title: "JPG to WEBP", from: "JPG", to: "WEBP", href: "/dashboard/tools/converter?from=jpg&to=webp", color: "#10b981" },
+  { title: "PNG to ICO", from: "PNG", to: "ICO", href: "/dashboard/tools/converter?from=png&to=ico", color: "#ec4899" },
+  { title: "JPG to ICO", from: "JPG", to: "ICO", href: "/dashboard/tools/converter?from=jpg&to=ico", color: "#06b6d4" },
 ];
 
 const converterTools = [
@@ -30,6 +32,7 @@ const converterTools = [
 export default function DashboardHome() {
   const [tools, setTools] = useState<ToolDef[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetchTools();
@@ -75,9 +78,25 @@ export default function DashboardHome() {
         <p className="text-muted-foreground text-lg">Your personalized hub for client-side utilities.</p>
       </div>
 
-      <div>
+      {/* Global Search Bar */}
+      <div className="relative max-w-xl">
+        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <Search className="h-5 w-5 text-muted-foreground" />
+        </div>
+        <input
+          type="text"
+          placeholder="Search for tools..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full pl-12 pr-4 py-3.5 glass bg-background/50 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground transition-all shadow-sm text-lg placeholder:text-muted-foreground/70"
+        />
+      </div>
+
+      {!searchQuery.trim() && (
+        <>
+          <div>
         <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-          <Zap className="w-5 h-5 text-accent" /> Quick Convert
+          <Zap className="w-5 h-5 text-accent" /> Images Convert
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {quickTools.map((qt) => (
@@ -117,11 +136,18 @@ export default function DashboardHome() {
         </div>
       </div>
 
+        </>
+      )}
+
       <div>
-        <h2 className="text-xl font-semibold mb-4">All Tools</h2>
-        {tools.length === 0 ? (
+        <h2 className="text-xl font-semibold mb-4">
+          {searchQuery.trim() ? "Search Results" : "All Tools"}
+        </h2>
+        {tools.filter(t => t.title.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 ? (
           <div className="text-center p-12 glass rounded-xl border border-border">
-            <p className="text-muted-foreground">No tools available yet. Admins can add tools from the Manage Tools panel.</p>
+            <p className="text-muted-foreground">
+              {searchQuery.trim() ? "No tools found matching your search." : "No tools available yet. Admins can add tools from the Manage Tools panel."}
+            </p>
           </div>
         ) : (
           <motion.div 
@@ -130,7 +156,7 @@ export default function DashboardHome() {
             animate="show"
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
           >
-            {tools.map((tool) => (
+            {tools.filter(t => t.title.toLowerCase().includes(searchQuery.toLowerCase())).map((tool) => (
               <motion.div key={tool.id} variants={item}>
                 {tool.isInternal ? (
                   <Link href={tool.url} className="block h-full">

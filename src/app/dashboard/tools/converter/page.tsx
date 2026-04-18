@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Upload, Download, ArrowRight, Image as ImageIcon, Loader2 } from "lucide-react";
 import { useAlertStore } from "../../../../store/alertStore";
 
-const IMAGE_FORMATS = ["PNG", "JPG", "WEBP"];
+const IMAGE_FORMATS = ["PNG", "JPG", "WEBP", "ICO"];
 
 export default function ConverterPage() {
   const searchParams = useSearchParams();
@@ -70,8 +70,8 @@ export default function ConverterPage() {
       
       ctx.drawImage(img, 0, 0);
 
-      const mimeType = toFormat === "JPG" ? "image/jpeg" : toFormat === "WEBP" ? "image/webp" : "image/png";
-      const quality = toFormat === "PNG" ? undefined : 0.9; // Webp and JPG quality
+      const mimeType = toFormat === "JPG" ? "image/jpeg" : toFormat === "WEBP" ? "image/webp" : toFormat === "ICO" ? "image/x-icon" : "image/png";
+      const quality = toFormat === "PNG" || toFormat === "ICO" ? undefined : 0.9; // Webp and JPG quality
 
       const dataUrl = canvas.toDataURL(mimeType, quality);
       
