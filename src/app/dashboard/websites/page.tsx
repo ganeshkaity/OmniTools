@@ -43,10 +43,6 @@ export default function WebsitesDirectoryPage() {
     (site.description && site.description.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
-  const safeHostname = (url: string) => {
-    try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; }
-  };
-
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -150,7 +146,7 @@ export default function WebsitesDirectoryPage() {
                       
                       <div className="mt-auto pt-2 inline-flex items-center text-xs text-muted-foreground font-medium uppercase tracking-wide">
                         <Globe className="w-3 h-3 mr-1" />
-                        {safeHostname(site.url)}
+                        {new URL(site.url).hostname.replace(/^www\./, '')}
                       </div>
                     </div>
                   </div>

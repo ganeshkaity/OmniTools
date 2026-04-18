@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { db } from "../../lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Link from "next/link";
-import { Loader2, ArrowRight, Zap, Calculator, Search, Video, PlayCircle, Camera } from "lucide-react";
+import { Loader2, ArrowRight, Zap, Calculator, Search } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface ToolDef {
@@ -26,13 +26,6 @@ const quickTools = [
 const converterTools = [
   { title: "Unit Converter", href: "/dashboard/tools/unit-converter", color: "#3b82f6" },
   { title: "Currency Converter", href: "/dashboard/tools/currency-converter", color: "#ef4444" },
-];
-
-const mediaTools = [
-  { title: "YT to MP4", desc: "download videos from Youtube", icon: PlayCircle, href: "/dashboard/tools/media?provider=youtube&format=mp4", color: "#f87171" },
-  { title: "Insta to MP4", desc: "Download Instagram video", icon: Camera, href: "/dashboard/tools/media?provider=insta&format=mp4", color: "#d946ef" },
-  { title: "YT to MP3", desc: "Download Youtube videos as audio", icon: PlayCircle, href: "/dashboard/tools/media?provider=youtube&format=mp3", color: "#fca5a5" },
-  { title: "Insta to MP3", desc: "Download instagram video as Audio", icon: Camera, href: "/dashboard/tools/media?provider=insta&format=mp3", color: "#f472b6" },
 ];
 
 export default function DashboardHome() {
@@ -118,32 +111,6 @@ export default function DashboardHome() {
               </div>
             </Link>
           ))}
-        </div>
-      </div>
-
-      <div>
-        <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-          <Video className="w-5 h-5 text-pink-500" /> Media
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {mediaTools.map((mt) => {
-            const Icon = mt.icon;
-            return (
-              <Link key={mt.title} href={mt.href}>
-                <div className="glass p-4 rounded-xl border border-border hover:bg-muted/30 transition-all flex items-center justify-between group">
-                  <div className="flex flex-col gap-1 pr-2">
-                    <h3 className="font-medium text-foreground flex items-center gap-1.5">
-                      <Icon className="w-4 h-4" style={{ color: mt.color }} /> {mt.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground line-clamp-1">{mt.desc}</p>
-                  </div>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center bg-background shrink-0 transform group-hover:scale-110 transition-transform shadow-sm border border-border" style={{ color: mt.color }}>
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
         </div>
       </div>
 
