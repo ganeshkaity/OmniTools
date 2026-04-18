@@ -35,9 +35,12 @@ export function Sidebar({
   const NavContent = () => (
     <div className="flex flex-col h-full bg-background/50 glass border-r border-border backdrop-blur-xl">
       <div className="flex h-16 items-center px-6 border-b border-border">
-        <span className="font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent text-xl tracking-tight">
-          OmniTools
-        </span>
+        <Link href="/dashboard" className="flex items-center gap-2">
+          <img src="/logo.png" alt="OmniTools Logo" className="w-8 h-8 rounded-lg object-contain" />
+          <span className="font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent text-xl tracking-tight">
+            OmniTools
+          </span>
+        </Link>
         <button className="md:hidden ml-auto p-2" onClick={() => setIsOpen(false)}>
           <X className="w-5 h-5" />
         </button>

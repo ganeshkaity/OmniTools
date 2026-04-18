@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "OmniTools Dashboard",
   description: "A fully responsive personal utility web app",
+  icons: {
+    icon: '/logo.png',
+  },
 };
 
 export default function RootLayout({
