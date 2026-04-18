@@ -21,7 +21,6 @@ const quickTools = [
   { title: "WEBP to PNG", from: "WEBP", to: "PNG", href: "/dashboard/tools/converter?from=webp&to=png", color: "#8b5cf6" },
   { title: "JPG to WEBP", from: "JPG", to: "WEBP", href: "/dashboard/tools/converter?from=jpg&to=webp", color: "#10b981" },
   { title: "PNG to ICO", from: "PNG", to: "ICO", href: "/dashboard/tools/converter?from=png&to=ico", color: "#ec4899" },
-  { title: "JPG to ICO", from: "JPG", to: "ICO", href: "/dashboard/tools/converter?from=jpg&to=ico", color: "#06b6d4" },
 ];
 
 const converterTools = [
