@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useAuthStore } from "../../../store/authStore";
+import { useAlertStore } from "../../../store/alertStore";
 import { auth, db } from "../../../lib/firebase";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { 
@@ -16,6 +17,7 @@ import { Loader2, Save, ShieldAlert, Key, Mail, Lock, PlusCircle } from "lucide-
 
 export default function AccountPage() {
   const { user, userData } = useAuthStore();
+  const { showAlert, showConfirm, showPrompt } = useAlertStore();
   const [name, setName] = useState(userData?.name || "");
   const [dob, setDob] = useState(userData?.dob || "");
   const [saving, setSaving] = useState(false);
@@ -35,10 +37,9 @@ export default function AccountPage() {
         dob
       });
       setSuccess(true);
-      setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
       console.error(err);
-      alert("Failed to update profile.");
+      await showAlert({ message: "Failed to update profile.", intent: "danger" });
     } finally {
       setSaving(false);
     }
@@ -49,9 +50,9 @@ export default function AccountPage() {
     try {
       setAuthActionLoading(true);
       await sendPasswordResetEmail(auth, userData.email);
-      alert("Password reset email has been sent to " + userData.email);
+      await showAlert({ message: "Password reset email has been sent to " + userData.email, intent: "success" });
     } catch (e: any) {
-      alert("Error sending password reset email: " + e.message);
+      await showAlert({ message: "Error sending password reset email: " + e.message, intent: "danger" });
     } finally {
       setAuthActionLoading(false);
     }
@@ -59,18 +60,18 @@ export default function AccountPage() {
 
   const handleChangeEmail = async () => {
     if (!auth.currentUser) return;
-    const newEmail = prompt("Enter your new email address:");
+    const newEmail = await showPrompt({ message: "Enter your new email address:", intent: "info" });
     if (!newEmail) return;
 
     try {
       setAuthActionLoading(true);
       await verifyBeforeUpdateEmail(auth.currentUser, newEmail);
-      alert(`Verification email sent to ${newEmail}. Please click the link to confirm your email change.`);
+      await showAlert({ message: `Verification email sent to ${newEmail}. Please click the link to confirm your email change.`, intent: "success" });
     } catch (e: any) {
       if (e.code === 'auth/requires-recent-login') {
-        alert("Security requirement: Please sign out and sign back in to perform this action.");
+        await showAlert({ message: "Security requirement: Please sign out and sign back in to perform this action.", intent: "warning" });
       } else {
-        alert("Error changing email: " + e.message);
+        await showAlert({ message: "Error changing email: " + e.message, intent: "danger" });
       }
     } finally {
       setAuthActionLoading(false);
@@ -83,10 +84,10 @@ export default function AccountPage() {
       setAuthActionLoading(true);
       const provider = new GoogleAuthProvider();
       await linkWithPopup(auth.currentUser, provider);
-      alert("Google Account successfully linked!");
+      await showAlert({ message: "Google Account successfully linked!", intent: "success" });
       window.location.reload();
     } catch (e: any) {
-      alert("Error linking Google account: " + e.message);
+      await showAlert({ message: "Error linking Google account: " + e.message, intent: "danger" });
     } finally {
       setAuthActionLoading(false);
     }
@@ -94,22 +95,22 @@ export default function AccountPage() {
 
   const handleAddPassword = async () => {
     if (!auth.currentUser) return;
-    const newPassword = prompt("Enter a strong password to add to your account:");
+    const newPassword = await showPrompt({ message: "Enter a strong password to add to your account:", intent: "info", inputType: "password" });
     if (!newPassword || newPassword.length < 6) {
-      alert("Password must be at least 6 characters.");
+      if (newPassword) await showAlert({ message: "Password must be at least 6 characters.", intent: "warning" });
       return;
     }
     
     try {
       setAuthActionLoading(true);
       await updatePassword(auth.currentUser, newPassword);
-      alert("Password successfully added! You can now sign in using your email and password.");
+      await showAlert({ message: "Password successfully added! You can now sign in using your email and password.", intent: "success" });
       window.location.reload();
     } catch (e: any) {
       if (e.code === 'auth/requires-recent-login') {
-        alert("Security requirement: Please sign out and sign back in to perform this action.");
+        await showAlert({ message: "Security requirement: Please sign out and sign back in to perform this action.", intent: "warning" });
       } else {
-        alert("Error adding password: " + e.message);
+        await showAlert({ message: "Error adding password: " + e.message, intent: "danger" });
       }
     } finally {
       setAuthActionLoading(false);
@@ -118,7 +119,7 @@ export default function AccountPage() {
 
   const handleDeleteAccount = async () => {
     if (!auth.currentUser) return;
-    const confirmDelete = window.confirm("Are you ABSOLUTELY sure? This will delete all your data and cannot be undone.");
+    const confirmDelete = await showConfirm({ message: "Are you ABSOLUTELY sure? This will delete all your data and cannot be undone.", intent: "danger" });
     if (!confirmDelete) return;
 
     try {
@@ -129,9 +130,9 @@ export default function AccountPage() {
       // User will be automatically signed out and redirected by auth listener
     } catch (e: any) {
       if (e.code === 'auth/requires-recent-login') {
-        alert("Security requirement: Please sign out and sign back in to perform this action.");
+        await showAlert({ message: "Security requirement: Please sign out and sign back in to perform this action.", intent: "warning" });
       } else {
-        alert("Error deleting account: " + e.message);
+        await showAlert({ message: "Error deleting account: " + e.message, intent: "danger" });
       }
       setAuthActionLoading(false); // only reset if failed
     }

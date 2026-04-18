@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { db } from "../../../../lib/firebase";
 import { collection, getDocs, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { useAlertStore } from "../../../../store/alertStore";
 
 interface SignupRequest {
   uid: string;
@@ -18,6 +19,7 @@ interface SignupRequest {
 export default function AdminRequestsPage() {
   const [requests, setRequests] = useState<SignupRequest[]>([]);
   const [loading, setLoading] = useState(true);
+  const { showAlert, showConfirm } = useAlertStore();
 
   useEffect(() => {
     fetchRequests();
@@ -53,12 +55,13 @@ export default function AdminRequestsPage() {
       setRequests(requests.filter(r => r.uid !== req.uid));
     } catch (err) {
       console.error("Failed to approve", err);
-      alert("Failed to approve user.");
+      await showAlert({ message: "Failed to approve user.", intent: "danger" });
     }
   };
 
   const handleReject = async (reqId: string) => {
-    if (!confirm("Are you sure you want to reject this request?")) return;
+    const ok = await showConfirm({ message: "Are you sure you want to reject this request?", intent: "warning" });
+    if (!ok) return;
     try {
       await deleteDoc(doc(db, "signup_requests", reqId));
       setRequests(requests.filter(r => r.uid !== reqId));

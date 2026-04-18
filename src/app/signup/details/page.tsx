@@ -16,14 +16,19 @@ export default function SignupDetailsPage() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  // If user is already approved/pending and skips this, let's redirect them
   useEffect(() => {
     if (!authLoading && !user) {
+      // Not logged in at all — go back to signup
       router.replace("/signup");
-    } else if (userData) {
-      router.replace("/dashboard");
+      return;
     }
-    
+    // Only redirect if the user is already APPROVED (has a doc in `users` collection)
+    // Pending users (in signup_requests) should still be able to re-submit or wait
+    if (userData?.status === "approved") {
+      router.replace("/dashboard");
+      return;
+    }
+    // Pre-fill name from Google/any provider displayName
     if (user?.displayName && !name) {
       setName(user.displayName);
     }
@@ -32,30 +37,39 @@ export default function SignupDetailsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
-    
+
     setSubmitting(true);
     setError("");
-    
+
     try {
-      // Create signup_request
-      await setDoc(doc(db, "signup_requests", user.uid), {
+      // Check if there's already a pending request
+      const requestRef = doc(db, "signup_requests", user.uid);
+      const requestSnap = await getDoc(requestRef);
+
+      if (requestSnap.exists() && requestSnap.data()?.status === "pending") {
+        // Already submitted — just go to dashboard to show waiting screen
+        window.location.href = "/dashboard";
+        return;
+      }
+
+      // Determine identifier — phone auth users have null email
+      const identifier = user.email ?? user.phoneNumber ?? "unknown";
+
+      // Create signup_request document
+      await setDoc(requestRef, {
         uid: user.uid,
         name,
-        email: user.email,
+        email: user.email ?? null,
+        phoneNumber: user.phoneNumber ?? null,
+        identifier,       // whichever is available
         dob,
         bio,
         status: "pending",
-        createdAt: Date.now()
+        createdAt: Date.now(),
+        provider: user.providerData?.[0]?.providerId ?? "unknown",
       });
-      
-      // Update local state by forcing a reload or just redirecting
-      // The layour will still see them as not in `users` collection,
-      // but we need to fetch their signup_requests status?
-      // Wait, the Dashboard layout checks `userData`, which checks the `users` collection. 
-      // If we are in `signup_requests`, we should probably check that in AuthProvider too!
-      
-      // We will handle that by redirecting to dashboard. The AuthProvider should be updated 
-      // to check signup_requests if users is absent.
+
+      // Hard reload so AuthProvider re-fetches and shows pending screen
       window.location.href = "/dashboard";
     } catch (err: any) {
       setError(err.message || "Failed to submit details");
@@ -64,10 +78,32 @@ export default function SignupDetailsPage() {
     }
   };
 
-  if (authLoading || userData) {
+  if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  // Already pending — show waiting message instead of blank flash
+  if (userData?.status === "pending") {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
+        <div className="glass p-8 max-w-md text-center rounded-xl">
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
+            Request Already Submitted
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            Your account is under review. An admin will approve your access soon.
+          </p>
+          <button
+            onClick={() => auth.signOut().then(() => router.replace("/login"))}
+            className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md font-medium hover:opacity-90"
+          >
+            Sign Out
+          </button>
+        </div>
       </div>
     );
   }
@@ -113,7 +149,7 @@ export default function SignupDetailsPage() {
               onChange={(e) => setDob(e.target.value)}
             />
           </div>
-          
+
           <div className="space-y-1">
             <label className="text-sm font-medium text-foreground">Why do you need access? (Optional)</label>
             <textarea

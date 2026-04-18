@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Upload, Download, ArrowRight, Image as ImageIcon, Loader2 } from "lucide-react";
+import { useAlertStore } from "../../../../store/alertStore";
 
 const IMAGE_FORMATS = ["PNG", "JPG", "WEBP"];
 
@@ -10,6 +11,7 @@ export default function ConverterPage() {
   const searchParams = useSearchParams();
   const initFrom = searchParams.get("from")?.toUpperCase() || "PNG";
   const initTo = searchParams.get("to")?.toUpperCase() || "JPG";
+  const { showAlert } = useAlertStore();
 
   const [fromFormat, setFromFormat] = useState(IMAGE_FORMATS.includes(initFrom) ? initFrom : "PNG");
   const [toFormat, setToFormat] = useState(IMAGE_FORMATS.includes(initTo) ? initTo : "JPG");
@@ -81,7 +83,7 @@ export default function ConverterPage() {
 
     } catch (err) {
       console.error("Conversion failed:", err);
-      alert("Failed to convert image.");
+      await showAlert({ message: "Failed to convert image.", intent: "danger" });
     } finally {
       setConverting(false);
     }

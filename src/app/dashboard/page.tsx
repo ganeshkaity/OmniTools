@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { db } from "../../lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Link from "next/link";
-import { Loader2, ArrowRight, Zap } from "lucide-react";
+import { Loader2, ArrowRight, Zap, Calculator } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface ToolDef {
@@ -20,6 +20,11 @@ const quickTools = [
   { title: "PNG to JPG", from: "PNG", to: "JPG", href: "/dashboard/tools/converter?from=png&to=jpg", color: "#f59e0b" },
   { title: "WEBP to PNG", from: "WEBP", to: "PNG", href: "/dashboard/tools/converter?from=webp&to=png", color: "#8b5cf6" },
   { title: "JPG to WEBP", from: "JPG", to: "WEBP", href: "/dashboard/tools/converter?from=jpg&to=webp", color: "#10b981" },
+];
+
+const converterTools = [
+  { title: "Unit Converter", href: "/dashboard/tools/unit-converter", color: "#3b82f6" },
+  { title: "Currency Converter", href: "/dashboard/tools/currency-converter", color: "#ef4444" },
 ];
 
 export default function DashboardHome() {
@@ -83,6 +88,27 @@ export default function DashboardHome() {
                   <p className="text-xs text-muted-foreground">In-browser conversion</p>
                 </div>
                 <div className="w-8 h-8 rounded-full flex items-center justify-center bg-background transform group-hover:scale-110 transition-transform shadow-sm border border-border" style={{ color: qt.color }}>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+          <Calculator className="w-5 h-5 text-primary" /> Converter
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {converterTools.map((ct) => (
+            <Link key={ct.title} href={ct.href}>
+              <div className="glass p-4 rounded-xl border border-border hover:bg-muted/30 transition-all flex items-center justify-between group">
+                <div>
+                  <h3 className="font-medium text-foreground">{ct.title}</h3>
+                  <p className="text-xs text-muted-foreground">Universal conversions</p>
+                </div>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center bg-background transform group-hover:scale-110 transition-transform shadow-sm border border-border" style={{ color: ct.color }}>
                   <ArrowRight className="w-4 h-4" />
                 </div>
               </div>

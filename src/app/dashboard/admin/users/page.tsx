@@ -5,10 +5,12 @@ import { db } from "../../../../lib/firebase";
 import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import { Loader2, Shield, ShieldOff, Ban } from "lucide-react";
 import { UserData } from "../../../../store/authStore";
+import { useAlertStore } from "../../../../store/alertStore";
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<UserData[]>([]);
   const [loading, setLoading] = useState(true);
+  const { showConfirm } = useAlertStore();
 
   useEffect(() => {
     fetchUsers();
@@ -17,8 +19,10 @@ export default function AdminUsersPage() {
   const fetchUsers = async () => {
     try {
       const snap = await getDocs(collection(db, "users"));
-      const data = snap.docs.map(doc => doc.data() as UserData);
-      setUsers(data);
+      const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as UserData & { id: string }));
+      // Ensure uid exists using document ID as fallback for older records
+      const usersData = data.map(u => ({ ...u, uid: u.uid || u.id }));
+      setUsers(usersData);
     } catch (err) {
       console.error(err);
     } finally {
@@ -28,7 +32,8 @@ export default function AdminUsersPage() {
 
   const handleToggleRole = async (userId: string, currentRole: string) => {
     const newRole = currentRole === "admin" ? "user" : "admin";
-    if (!confirm(`Change user to ${newRole}?`)) return;
+    const ok = await showConfirm({ message: `Change user to ${newRole}?`, intent: "warning" });
+    if (!ok) return;
     
     try {
       await updateDoc(doc(db, "users", userId), { role: newRole });
@@ -40,7 +45,8 @@ export default function AdminUsersPage() {
 
   const handleToggleBan = async (userId: string, currentStatus: string) => {
     const newStatus = currentStatus === "banned" ? "approved" : "banned";
-    if (!confirm(`Are you sure you want to ${newStatus === 'banned' ? 'ban' : 'unban'} this user?`)) return;
+    const ok = await showConfirm({ message: `Are you sure you want to ${newStatus === 'banned' ? 'ban' : 'unban'} this user?`, intent: "danger" });
+    if (!ok) return;
     
     try {
       await updateDoc(doc(db, "users", userId), { status: newStatus });

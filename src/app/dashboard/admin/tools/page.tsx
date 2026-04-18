@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { db } from "../../../../lib/firebase";
 import { collection, getDocs, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { Loader2, Plus, Trash2, Edit } from "lucide-react";
+import { useAlertStore } from "../../../../store/alertStore";
 
 interface ToolDef {
   id: string;
@@ -17,8 +18,10 @@ interface ToolDef {
 export default function AdminToolsPage() {
   const [tools, setTools] = useState<ToolDef[]>([]);
   const [loading, setLoading] = useState(true);
+  const { showConfirm } = useAlertStore();
   
   const [isAdding, setIsAdding] = useState(false);
+  const [editingToolId, setEditingToolId] = useState<string | null>(null);
   const [newTitle, setNewTitle] = useState("");
   const [newUrl, setNewUrl] = useState("");
   const [newColor, setNewColor] = useState("#4f46e5");
@@ -41,30 +44,57 @@ export default function AdminToolsPage() {
     }
   };
 
-  const handleAddTool = async (e: React.FormEvent) => {
+  const resetForm = () => {
+    setIsAdding(false);
+    setEditingToolId(null);
+    setNewTitle(""); 
+    setNewUrl(""); 
+    setNewColor("#4f46e5");
+    setNewIconName("Link");
+    setIsInternal(false);
+  };
+
+  const handleEditClick = (tool: ToolDef) => {
+    setEditingToolId(tool.id);
+    setNewTitle(tool.title);
+    setNewUrl(tool.url);
+    setNewColor(tool.color);
+    setNewIconName(tool.iconName);
+    setIsInternal(tool.isInternal);
+    setIsAdding(true);
+    // Scroll to top to see form
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSaveTool = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const newId = newTitle.toLowerCase().replace(/\s+/g, '-');
-      const docRef = doc(db, "tools", newId);
-      const newTool = {
-        id: newId,
+      const toolId = editingToolId || newTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const docRef = doc(db, "tools", toolId);
+      const toolData = {
+        id: toolId,
         title: newTitle,
         url: newUrl,
         iconName: newIconName,
         color: newColor,
         isInternal
       };
-      await setDoc(docRef, newTool);
-      setTools([...tools, newTool]);
-      setIsAdding(false);
-      setNewTitle(""); setNewUrl(""); setIsInternal(false);
+      await setDoc(docRef, toolData);
+      
+      if (editingToolId) {
+        setTools(tools.map(t => t.id === editingToolId ? toolData : t));
+      } else {
+        setTools([...tools, toolData]);
+      }
+      resetForm();
     } catch (err) {
-      console.error("Failed to add tool", err);
+      console.error("Failed to save tool", err);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete this tool?")) return;
+    const ok = await showConfirm({ message: "Delete this tool?", intent: "danger" });
+    if (!ok) return;
     try {
       await deleteDoc(doc(db, "tools", id));
       setTools(tools.filter(t => t.id !== id));
@@ -89,7 +119,7 @@ export default function AdminToolsPage() {
           <p className="text-muted-foreground">Add or remove utilities from the dashboard.</p>
         </div>
         <button
-          onClick={() => setIsAdding(!isAdding)}
+          onClick={() => isAdding ? resetForm() : setIsAdding(true)}
           className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors"
         >
           {isAdding ? "Cancel" : <><Plus className="w-4 h-4" /> Add Tool</>}
@@ -98,8 +128,8 @@ export default function AdminToolsPage() {
 
       {isAdding && (
         <div className="glass p-6 rounded-xl border border-border">
-          <h2 className="text-xl font-semibold mb-4">Add New Tool</h2>
-          <form onSubmit={handleAddTool} className="space-y-4">
+          <h2 className="text-xl font-semibold mb-4">{editingToolId ? "Edit Tool" : "Add New Tool"}</h2>
+          <form onSubmit={handleSaveTool} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1">
                 <label className="text-sm font-medium">Tool Name</label>
@@ -192,13 +222,22 @@ export default function AdminToolsPage() {
                   {tool.isInternal ? "Internal" : "External"}
                 </span>
                 
-                <button
-                  onClick={() => handleDelete(tool.id)}
-                  className="p-2 text-destructive hover:bg-destructive/10 rounded-md transition-colors"
-                  title="Delete"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => handleEditClick(tool)}
+                    className="p-2 text-accent hover:bg-accent/10 rounded-md transition-colors"
+                    title="Edit"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(tool.id)}
+                    className="p-2 text-destructive hover:bg-destructive/10 rounded-md transition-colors"
+                    title="Delete"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

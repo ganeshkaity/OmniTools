@@ -1,0 +1,431 @@
+
+> omnitools@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\GANESH KAITY\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\GANESH KAITY\OneDrive\Desktop\OmniTools\package-lock.json
+
+▲ Next.js 16.2.4 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 5 errors:
+./OneDrive/Desktop/OmniTools/src/app/dashboard/account/page.tsx:140:39
+Return statement is not allowed here
+  [90m138 |[0m   };
+  [90m139 |[0m
+[31m[1m>[0m [90m140 |[0m   [36mif[0m (!userData || !auth.currentUser) [36mreturn[0m [36mnull[0m;
+  [90m    |[0m                                       [31m[1m^^^^^^^^^^^^[0m
+  [90m141 |[0m
+  [90m142 |[0m   [90m// Check providers[0m
+  [90m143 |[0m   [36mconst[0m providerData = auth.currentUser.providerData;
+
+Parsing ecmascript source code failed
+
+
+./OneDrive/Desktop/OmniTools/src/app/dashboard/account/page.tsx:147:3
+Return statement is not allowed here
+  [90m145 |[0m   [36mconst[0m hasPassword = providerData.some(p => p.providerId === [32m'password'[0m);
+  [90m146 |[0m
+[31m[1m>[0m [90m147 |[0m   [36mreturn[0m (
+  [90m    |[0m   [31m[1m^^^^^^^[0m
+[31m[1m>[0m [90m148 |[0m     <div className=[32m"max-w-2xl mx-auto space-y-8 pb-12"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m149 |[0m       <div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^[0m
+[31m[1m>[0m [90m150 |[0m         <h1 className=[32m"text-3xl font-bold tracking-tight"[0m>[33mMy[0m [33mAccount[0m</h1>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m151 |[0m         <p className=[32m"text-muted-foreground mt-2"[0m>[33mManage[0m your personalized settings.</p>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m152 |[0m       </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m153 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m154 |[0m       {[90m/* Profile Details */[0m}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m155 |[0m       <div className=[32m"glass p-6 md:p-8 rounded-2xl border border-border"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m156 |[0m         <h2 className=[32m"text-xl font-semibold mb-6"[0m>[33mProfile[0m [33mDetails[0m</h2>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m157 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m158 |[0m         <form onSubmit={handleSave} className=[32m"space-y-6"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m159 |[0m           <div className=[32m"grid grid-cols-1 md:grid-cols-2 gap-6"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m160 |[0m             <div className=[32m"space-y-1"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m161 |[0m               <label className=[32m"text-sm font-medium"[0m>[33mEmail[0m</label>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m162 |[0m               <input
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m163 |[0m                 [36mtype[0m=[32m"text"[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m164 |[0m                 disabled
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m165 |[0m                 className=[32m"w-full px-4 py-2 bg-muted/50 border border-border rounded-md t...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m166 |[0m                 value={userData.email}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m167 |[0m               />
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m168 |[0m             </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m169 |[0m             
+  [90m    |[0m [31m[1m^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m170 |[0m             <div className=[32m"space-y-1"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m171 |[0m               <label className=[32m"text-sm font-medium"[0m>[33mFull[0m [33mName[0m</label>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m172 |[0m               <input
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m173 |[0m                 [36mtype[0m=[32m"text"[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m174 |[0m                 required
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m175 |[0m                 className=[32m"w-full px-4 py-2 bg-background/50 border border-border rounded...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m176 |[0m                 value={name}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m177 |[0m                 onChange={(e) => setName(e.target.value)}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m178 |[0m               />
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m179 |[0m             </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m180 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m181 |[0m             <div className=[32m"space-y-1"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m182 |[0m               <label className=[32m"text-sm font-medium"[0m>[33mDate[0m [36mof[0m [33mBirth[0m</label>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m183 |[0m               <input
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m184 |[0m                 [36mtype[0m=[32m"date"[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m185 |[0m                 required
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m186 |[0m                 className=[32m"w-full px-4 py-2 bg-background/50 border border-border rounded...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m187 |[0m                 value={dob}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m188 |[0m                 onChange={(e) => setDob(e.target.value)}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m189 |[0m               />
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m190 |[0m             </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m191 |[0m           </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m192 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m193 |[0m           <div className=[32m"flex items-center gap-4 border-t border-border pt-6 mt-6"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m194 |[0m             <button
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m195 |[0m               [36mtype[0m=[32m"submit"[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m196 |[0m               disabled={saving}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m197 |[0m               className=[32m"flex items-center gap-2 px-6 py-2 bg-primary text-primary-foregr...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m198 |[0m             >
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m199 |[0m               {saving ? <[33mLoader2[0m className=[32m"w-4 h-4 animate-spin"[0m /> : <[33mSave[0m className=[32m"w...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m200 |[0m               [33mSave[0m [33mChanges[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m201 |[0m             </button>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m202 |[0m             {success && <span className=[32m"text-sm text-green-500 font-medium"[0m>[33mProfile[0m upda...
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m203 |[0m           </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m204 |[0m         </form>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m205 |[0m       </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m206 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m207 |[0m       {[90m/* Security & Authentication */[0m}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m208 |[0m       <div className=[32m"glass p-6 md:p-8 rounded-2xl border border-border"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m209 |[0m         <div className=[32m"flex items-center gap-2 mb-6 text-xl font-semibold"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m210 |[0m           <[33mKey[0m className=[32m"w-5 h-5 text-accent"[0m />
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m211 |[0m           <h2>[33mSecurity[0m & [33mLogin[0m</h2>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m212 |[0m         </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m213 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m214 |[0m         <div className=[32m"space-y-4"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m215 |[0m           <div className=[32m"flex flex-col md:flex-row md:items-center justify-between p-4 b...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m216 |[0m             <div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m217 |[0m               <p className=[32m"font-medium flex items-center gap-2"[0m><[33mMail[0m className=[32m"w-4 h-4.[0m..
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m218 |[0m               <p className=[32m"text-sm text-muted-foreground"[0m>[33mSend[0m a verification link to up...
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m219 |[0m             </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m220 |[0m             <button 
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m221 |[0m               onClick={handleChangeEmail}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m222 |[0m               disabled={authActionLoading}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m223 |[0m               className=[32m"mt-3 md:mt-0 px-4 py-2 text-sm bg-secondary text-secondary-foreg...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m224 |[0m             >
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m225 |[0m               [33mChange[0m [33mEmail[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m226 |[0m             </button>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m227 |[0m           </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m228 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m229 |[0m           {!hasGoogle && (
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m230 |[0m             <div className=[32m"flex flex-col md:flex-row md:items-center justify-between p-4...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m231 |[0m               <div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m232 |[0m                 <p className=[32m"font-medium flex items-center gap-2"[0m><[33mPlusCircle[0m className=[32m...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m233 |[0m                 <p className=[32m"text-sm text-muted-foreground"[0m>[33mAllow[0m signing [36min[0m [36mwith[0m your [33mG...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m234 |[0m               </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m235 |[0m               <button 
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m236 |[0m                 onClick={handleLinkGoogle}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m237 |[0m                 disabled={authActionLoading}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m238 |[0m                 className=[32m"mt-3 md:mt-0 px-4 py-2 text-sm bg-accent text-accent-foregroun...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m239 |[0m               >
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m240 |[0m                 [33mLink[0m [33mGoogle[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m241 |[0m               </button>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m242 |[0m             </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m243 |[0m           )}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m244 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m245 |[0m           {!hasPassword && (
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m246 |[0m             <div className=[32m"flex flex-col md:flex-row md:items-center justify-between p-4...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m247 |[0m               <div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m248 |[0m                 <p className=[32m"font-medium flex items-center gap-2"[0m><[33mLock[0m className=[32m"w-4 h...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m249 |[0m                 <p className=[32m"text-sm text-muted-foreground"[0m>[33mAdd[0m a password so you can lo...
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m250 |[0m               </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m251 |[0m               <button 
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m252 |[0m                 onClick={handleAddPassword}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m253 |[0m                 disabled={authActionLoading}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m254 |[0m                 className=[32m"mt-3 md:mt-0 px-4 py-2 text-sm bg-accent text-accent-foregroun...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m255 |[0m               >
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m256 |[0m                 [33mSet[0m [33mPassword[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m257 |[0m               </button>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m258 |[0m             </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m259 |[0m           )}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m260 |[0m         </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m261 |[0m       </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m262 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m263 |[0m       {[90m/* Danger Zone */[0m}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m264 |[0m       <div className=[32m"p-6 md:p-8 rounded-2xl border-2 border-red-500/50 bg-red-500/10 dar...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m265 |[0m         <div className=[32m"flex items-center gap-2 mb-4 text-red-500 font-semibold text-xl"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m266 |[0m           <[33mShieldAlert[0m className=[32m"w-6 h-6"[0m />
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m267 |[0m           <h2>[33mDanger[0m [33mZone[0m</h2>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m268 |[0m         </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m269 |[0m         
+  [90m    |[0m [31m[1m^^^^^^^^[0m
+[31m[1m>[0m [90m270 |[0m         <div className=[32m"space-y-4"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m271 |[0m           <div className=[32m"flex flex-col md:flex-row md:items-center justify-between borde...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m272 |[0m             <div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m273 |[0m               <p className=[32m"font-medium text-foreground"[0m>[33mReset[0m [33mPassword[0m</p>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m274 |[0m               <p className=[32m"text-sm text-muted-foreground"[0m>[33mSend[0m a password reset email to...
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m275 |[0m             </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m276 |[0m             <button 
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m277 |[0m               onClick={handleResetPassword}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m278 |[0m               disabled={authActionLoading || !hasPassword}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m279 |[0m               className=[32m"mt-2 md:mt-0 px-4 py-2 border border-foreground/20 rounded-md ho...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m280 |[0m             >
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m281 |[0m               [33mReset[0m [33mPassword[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m282 |[0m             </button>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m283 |[0m           </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m284 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m285 |[0m           <div className=[32m"flex flex-col md:flex-row md:items-center justify-between pt-2"[0m>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m286 |[0m             <div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m287 |[0m               <p className=[32m"font-medium text-red-500"[0m>[33mDelete[0m [33mAccount[0m</p>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m288 |[0m               <p className=[32m"text-sm text-muted-foreground"[0m>[33mPermanently[0m [36mdelete[0m your accoun...
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m289 |[0m             </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m290 |[0m             <button 
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m291 |[0m               onClick={handleDeleteAccount}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m292 |[0m               disabled={authActionLoading}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m293 |[0m               className=[32m"mt-2 md:mt-0 px-4 py-2 bg-red-500 text-white font-semibold round...[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m294 |[0m             >
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m295 |[0m               [33mDelete[0m [33mAccount[0m
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m296 |[0m             </button>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m297 |[0m           </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m298 |[0m         </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m299 |[0m       </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m300 |[0m     </div>
+  [90m    |[0m [31m[1m^^^^^^^^^^[0m
+[31m[1m>[0m [90m301 |[0m   );
+  [90m    |[0m [31m[1m^^^^[0m
+  [90m302 |[0m }
+  [90m303 |[0m
+
+Parsing ecmascript source code failed
+
+
+./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/requests/page.tsx:7:1
+Module not found: Can't resolve '../../../../../store/alertStore'
+  [90m 5 |[0m [36mimport[0m { collection, getDocs, doc, setDoc, deleteDoc } [36mfrom[0m [32m"firebase/firestore"[0m;
+  [90m 6 |[0m [36mimport[0m { [33mCheckCircle[0m, [33mXCircle[0m, [33mLoader2[0m } [36mfrom[0m [32m"lucide-react"[0m;
+[31m[1m>[0m [90m 7 |[0m [36mimport[0m { useAlertStore } [36mfrom[0m [32m"../../../../../store/alertStore"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m 8 |[0m
+  [90m 9 |[0m [36minterface[0m [33mSignupRequest[0m {
+  [90m10 |[0m   uid: string;
+
+
+
+Import traces:
+  Client Component Browser:
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/requests/page.tsx [Client Component Browser]
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/requests/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/requests/page.tsx [Client Component SSR]
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/requests/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/tools/page.tsx:7:1
+Module not found: Can't resolve '../../../../../store/alertStore'
+  [90m 5 |[0m [36mimport[0m { collection, getDocs, doc, setDoc, deleteDoc } [36mfrom[0m [32m"firebase/firestore"[0m;
+  [90m 6 |[0m [36mimport[0m { [33mLoader2[0m, [33mPlus[0m, [33mTrash2[0m, [33mEdit[0m } [36mfrom[0m [32m"lucide-react"[0m;
+[31m[1m>[0m [90m 7 |[0m [36mimport[0m { useAlertStore } [36mfrom[0m [32m"../../../../../store/alertStore"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m 8 |[0m
+  [90m 9 |[0m [36minterface[0m [33mToolDef[0m {
+  [90m10 |[0m   id: string;
+
+
+
+Import traces:
+  Client Component Browser:
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/tools/page.tsx [Client Component Browser]
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/tools/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/tools/page.tsx [Client Component SSR]
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/tools/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/users/page.tsx:8:1
+Module not found: Can't resolve '../../../../../store/alertStore'
+  [90m 6 |[0m [36mimport[0m { [33mLoader2[0m, [33mShield[0m, [33mShieldOff[0m, [33mBan[0m } [36mfrom[0m [32m"lucide-react"[0m;
+  [90m 7 |[0m [36mimport[0m { [33mUserData[0m } [36mfrom[0m [32m"../../../../store/authStore"[0m;
+[31m[1m>[0m [90m 8 |[0m [36mimport[0m { useAlertStore } [36mfrom[0m [32m"../../../../../store/alertStore"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m 9 |[0m
+  [90m10 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mAdminUsersPage[0m() {
+  [90m11 |[0m   [36mconst[0m [users, setUsers] = useState<[33mUserData[0m[]>([]);
+
+
+
+Import traces:
+  Client Component Browser:
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/users/page.tsx [Client Component Browser]
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/users/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/users/page.tsx [Client Component SSR]
+    ./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/users/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./OneDrive/Desktop/OmniTools/src/app/dashboard/account/page.tsx:140:39)
+    at <unknown> (./OneDrive/Desktop/OmniTools/src/app/dashboard/account/page.tsx:147:3)
+    at <unknown> (./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/requests/page.tsx:7:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/tools/page.tsx:7:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./OneDrive/Desktop/OmniTools/src/app/dashboard/admin/users/page.tsx:8:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
