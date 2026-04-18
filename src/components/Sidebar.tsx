@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, User, Users, ShieldAlert, Wrench, Settings, X, PlusCircle } from "lucide-react";
+import { Home, User, Users, ShieldAlert, Wrench, Settings, X, PlusCircle, Globe } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
@@ -9,6 +9,7 @@ import { useAuthStore } from "../store/authStore";
 
 const navItems = [
   { name: "Home Tools", href: "/dashboard", icon: Home },
+  { name: "Websites", href: "/dashboard/websites", icon: Globe },
   { name: "My Account", href: "/dashboard/account", icon: User },
 ];
 
@@ -16,6 +17,7 @@ const adminItems = [
   { name: "Signup Requests", href: "/dashboard/admin/requests", icon: ShieldAlert },
   { name: "Users", href: "/dashboard/admin/users", icon: Users },
   { name: "Manage Tools", href: "/dashboard/admin/tools", icon: Wrench },
+  { name: "Manage Websites", href: "/dashboard/admin/websites", icon: Globe },
   { name: "Settings", href: "/dashboard/admin/settings", icon: Settings },
 ];
 
